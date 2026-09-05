@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Αποθετήριο Εργασιών | Διαχείριση Μεταναστευτικών Ροών</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <!-- Αν το αρχείο εικόνας σας έχει άλλο όνομα, αλλάξτε το "logo.png" ανάλογα -->
+      <img src="assets/logo.png" alt="Λογότυπο Συλλόγου" class="site-logo">
+      <div class="header-text">
+        <h1>Διαχείριση Μεταναστευτικών Ροών &amp; Πληθυσμού σε Κίνηση</h1>
+        <p class="subtitle">Αποθετήριο Εργασιών &amp; Σύλλογος Φοιτητών / Αποφοίτων</p>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs-nav">
+    <button class="tab-btn active" data-tab="program">Το Πρόγραμμα</button>
+    <button class="tab-btn" data-tab="statute">Καταστατικό Συλλόγου</button>
+    <button class="tab-btn" data-tab="papers">Εργασίες ανά Μάθημα</button>
+    <button class="tab-btn" data-tab="news">Ανακοινώσεις - Νέα</button>
+  </nav>
+
+  <main class="container">
+    <!-- Καρτέλα 1: Το Πρόγραμμα -->
+    <section id="program" class="tab-content active">
+      <h2>Το Πρόγραμμα Μεταπτυχιακών Σπουδών</h2>
+      <p>Το Διεπιστημονικό Πρόγραμμα επικεντρώνεται στη διερεύνηση, διαχείριση και ανάλυση των σύγχρονων μεταναστευτικών ροών, της προστασίας συνόρων και των θεμελιωδών δικαιωμάτων.</p>
+      <div class="info-card">
+        <h3>Βασικοί Πυλώνες:</h3>
+        <ul>
+          <li>Διεθνές, Ευρωπαϊκό &amp; Εθνικό Δίκαιο Ασύλου</li>
+          <li>Διαχείριση και Επιτήρηση Εξωτερικών Συνόρων</li>
+          <li>Πολιτικές Ένταξης, Κοινωνική Συνοχή και Ανθρώπινα Δικαιώματα</li>
+          <li>Ανάλυση Πολιτικής &amp; Μεθοδολογία Έρευνας</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Καρτέλα 2: Καταστατικό Συλλόγου -->
+    <section id="statute" class="tab-content">
+      <h2>Καταστατικό του Συλλόγου</h2>
+      <p>Το επίσημο καταστατικό λειτουργίας και οι αρχές του Συλλόγου.</p>
+      <div class="pdf-box">
+        <p>Μπορείτε να ανοίξετε ή να μεταφορτώσετε το επίσημο κείμενο:</p>
+        <a href="docs/katastatiko.pdf" target="_blank" class="btn">Προβολή Καταστατικού (PDF)</a>
+      </div>
+    </section>
+
+    <!-- Καρτέλα 3: Εργασίες ανά Μάθημα -->
+    <section id="papers" class="tab-content">
+      <h2>Αποθετήριο Επιστημονικών Εργασιών</h2>
+      
+      <div class="search-controls">
+        <input type="text" id="searchInput" placeholder="Αναζήτηση με λέξη-κλειδί, συγγραφέα ή τίτλο...">
+        <select id="courseFilter">
+          <option value="all">Όλα τα Μαθήματα</option>
+        </select>
+      </div>
+
+      <div id="papersGrid" class="papers-grid">
+        <!-- Εδώ φορτώνονται αυτόματα οι κάρτες εργασιών από το papers.json -->
+      </div>
+    </section>
+
+    <!-- Καρτέλα 4: Ανακοινώσεις - Νέα -->
+    <section id="news" class="tab-content">
+      <h2>Ανακοινώσεις &amp; Νέα</h2>
+      <article class="news-item">
+        <span class="news-date">Σεπτέμβριος 2026</span>
+        <h3>Έναρξη Λειτουργίας Ηλεκτρονικού Αποθετηρίου</h3>
+        <p>Τίθεται σε λειτουργία η στατική πλατφόρμα συγκέντρωσης και προβολής των ακαδημαϊκών εργασιών των φοιτητών του μεταπτυχιακού προγράμματος.</p>
+      </article>
+      <article class="news-item">
+        <span class="news-date">Αύγουστος 2026</span>
+        <h3>Πρόσκληση Υποβολής Εργασιών</h3>
+        <p>Παρακαλούνται οι απόφοιτοι και φοιτητές να αποστέλλουν τις εγκεκριμένες εργασίες τους για ψηφιοποίηση και καταχώριση.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="social-links">
+        <span class="social-label">Σύνδεσμοι Συλλόγου:</span>
+        <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com" target="_blank" rel="noopener">X (Twitter)</a>
+        <a href="mailto:info@example.com">Email</a>
+      </div>
+      <p class="copy">&copy; 2026 Σύλλογος Μεταπτυχιακού «Διαχείριση Μεταναστευτικών Ροών»</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

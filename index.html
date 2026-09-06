@@ -3,140 +3,1574 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Αποθετήριο Εργασιών | Διαχείριση Μεταναστευτικών Ροών</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Ηλεκτρονικό Καταθετήριο Εργασιών & Σύλλογος Φοιτητών / Αποφοίτων - Δ.Π.Μ.Σ. Διαχείριση Μεταναστευτικών Ροών και Πληθυσμού σε Κίνηση">
+  <title>Αποθετήριο Εργασιών | Διαχείριση Μεταναστευτικών Ροών &amp; Πληθυσμού σε Κίνηση</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #1a365d;
+      --primary-dark: #0f233d;
+      --primary-light: #2a4365;
+      --secondary: #2b6cb0;
+      --secondary-hover: #2c5282;
+      --accent: #b7791f;
+      --accent-hover: #975a16;
+      --accent-light: #fefcbf;
+      --bg: #f7fafc;
+      --card-bg: #ffffff;
+      --text: #2d3748;
+      --text-muted: #4a5568;
+      --text-light: #718096;
+      --border: #e2e8f0;
+      --border-focus: #3182ce;
+      --warning-bg: #fffaf0;
+      --warning-border: #dd6b20;
+      --warning-text: #744210;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    header.site-header {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 65%, var(--primary-light) 100%);
+      color: #ffffff;
+      padding: 1.75rem 1rem;
+      border-bottom: 3px solid var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .logo-wrapper {
+      background: #ffffff;
+      padding: 6px 10px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .site-logo {
+      max-height: 75px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .logo-svg-fallback {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
+      height: 70px;
+    }
+
+    .header-text {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .header-text h1 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      color: #cbd5e0;
+      margin-top: 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    .tabs-nav {
+      display: flex;
+      justify-content: center;
+      background: #ffffff;
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: var(--shadow-sm);
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 1rem 1.4rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-muted);
+      border-bottom: 3px solid transparent;
+      transition: var(--transition);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .tab-btn:hover {
+      color: var(--secondary);
+      background-color: #f7fafc;
+    }
+
+    .tab-btn.active {
+      color: var(--secondary);
+      border-bottom-color: var(--secondary);
+      background: #ebf8ff;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      flex: 1;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .info-card, .pdf-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-card h2 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .info-card h3 {
+      color: var(--primary);
+      font-size: 1.15rem;
+      margin: 1.35rem 0 0.5rem 0;
+      font-weight: 600;
+    }
+
+    .styled-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 0.75rem;
+    }
+
+    .styled-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .styled-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0.35rem;
+      color: var(--secondary);
+      font-size: 1.1rem;
+      top: -0.1rem;
+    }
+
+    .disclaimer-banner {
+      background-color: var(--warning-bg);
+      border-left: 4px solid var(--warning-border);
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-sm);
+      margin: 0 0 1.75rem 0;
+      font-size: 0.9rem;
+      color: var(--warning-text);
+      line-height: 1.55;
+      border-top: 1px solid #feebc8;
+      border-right: 1px solid #feebc8;
+      border-bottom: 1px solid #feebc8;
+    }
+
+    .disclaimer-banner h4 {
+      margin-bottom: 0.5rem;
+      color: #9c4221;
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .consent-download-wrapper {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .controls-panel {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .control-group.flex-2 {
+      flex: 2;
+      min-width: 280px;
+    }
+
+    .control-group label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text-muted);
+    }
+
+    .control-group select, 
+    .search-row input {
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.93rem;
+      background: #ffffff;
+      color: var(--text);
+      font-family: inherit;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .control-group select:focus, 
+    .search-row input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15);
+    }
+
+    .search-row {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .search-row label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text-muted);
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input-wrapper input {
+      width: 100%;
+      padding-right: 2.2rem;
+    }
+
+    .clear-btn {
+      position: absolute;
+      right: 0.6rem;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: none;
+      padding: 0.2rem;
+      line-height: 1;
+    }
+
+    .clear-btn:hover {
+      color: var(--text);
+    }
+
+    .course-info-card {
+      background: #ebf8ff;
+      border: 1px solid #bee3f8;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .course-info-card h3 {
+      color: var(--primary);
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+    }
+
+    .course-info-card p {
+      font-size: 0.92rem;
+      color: var(--text);
+      margin-top: 0.3rem;
+    }
+
+    .badges-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--secondary);
+      color: #ffffff;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-gray {
+      background: #718096;
+    }
+
+    .badge-accent {
+      background: var(--accent);
+    }
+
+    .results-count-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .papers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .paper-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .paper-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e0;
+    }
+
+    .paper-card h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .paper-meta {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+      line-height: 1.45;
+    }
+
+    .tags {
+      margin: 0.85rem 0 1.1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #edf2f7;
+      color: #4a5568;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      background: var(--secondary);
+      color: #ffffff !important;
+      text-decoration: none !important;
+      padding: 0.65rem 1.1rem;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn:hover {
+      background: var(--secondary-hover);
+      color: #ffffff !important;
+      transform: translateY(-1px);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+    }
+
+    .btn-accent:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: var(--text) !important;
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: #f7fafc;
+      border-color: #cbd5e0;
+      color: var(--primary) !important;
+    }
+
+    .btn-sm {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .callout-box {
+      background: #edf2f7;
+      border-left: 4px solid var(--secondary);
+      padding: 1.35rem;
+      border-radius: var(--radius-sm);
+      margin-top: 1.5rem;
+    }
+
+    .callout-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .news-item {
+      background: #ffffff;
+      padding: 1.35rem;
+      border-left: 4px solid var(--secondary);
+      margin-bottom: 1.25rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .news-date {
+      font-size: 0.8rem;
+      color: var(--secondary);
+      text-transform: uppercase;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 0.3rem;
+      background: #ebf8ff;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .news-item h3 {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+    }
+
+    .cinema-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .cinema-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cinema-card h4 {
+      color: var(--primary);
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .cinema-meta {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      background: #2d3748;
+      color: #ffffff;
+      padding: 2.25rem 1rem 1.75rem 1rem;
+      text-align: center;
+      margin-top: auto;
+      border-top: 1px solid #1a202c;
+    }
+
+    .footer-inner {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .footer-disclaimer {
+      font-size: 0.88rem;
+      color: #cbd5e0;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .social-links {
+      margin-bottom: 1rem;
+      font-size: 0.92rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .social-label {
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .social-links a {
+      color: #edf2f7;
+      text-decoration: underline;
+    }
+
+    .social-links a:hover {
+      color: #ecc94b;
+    }
+
+    .copy {
+      font-size: 0.82rem;
+      color: #a0aec0;
+      border-top: 1px solid #4a5568;
+      padding-top: 1.2rem;
+    }
+
+    /* Modal / Dialog */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(3px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 1.75rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      transform: scale(0.96);
+      transition: var(--transition);
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.6rem;
+    }
+
+    .modal-header h3 {
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+
+    .close-modal-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--text-light);
+      cursor: pointer;
+    }
+
+    .close-modal-btn:hover {
+      color: var(--text);
+    }
+
+    .citation-box {
+      background: #edf2f7;
+      padding: 0.85rem;
+      border-radius: var(--radius-sm);
+      font-family: monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+      margin: 0.75rem 0;
+      border: 1px solid var(--border);
+    }
+
+    /* Notification toast */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--primary-dark);
+      color: #ffffff;
+      padding: 0.75rem 1.2rem;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+      font-size: 0.9rem;
+      z-index: 120;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: var(--transition);
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 640px) {
+      .header-container {
+        justify-content: center;
+        text-align: center;
+      }
+      .filter-row {
+        flex-direction: column;
+      }
+      .control-group, .control-group.flex-2 {
+        min-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <header>
+  <header class="site-header" role="banner">
     <div class="header-container">
-      <img src="assets/logo.png" alt="Λογότυπο Συλλόγου" class="site-logo">
+      <div class="logo-wrapper">
+        <!-- Attempt to load user's provided logo.jpg with fallback -->
+        <img 
+          src="logo.jpg" 
+          alt="Σύλλογος Φοιτητών - Διαχείριση Μεταναστευτικών Ροών" 
+          class="site-logo" 
+          id="siteLogoImg"
+          onerror="handleLogoError(this)"
+        >
+        <!-- High fidelity SVG fallback mimicking the exact graphic in logo.jpg -->
+        <svg id="logoSvgFallback" class="logo-svg-fallback" viewBox="0 0 420 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Λογότυπο Συλλόγου Φοιτητών">
+          <!-- Orange arrow pointing up-right -->
+          <path d="M260 140 C285 100, 310 70, 340 40 L315 25 L385 15 L380 85 L355 70 C325 100, 295 130, 280 148 Z" fill="#b7791f"/>
+          <!-- Blue wave 1 -->
+          <path d="M20 135 C70 95, 120 70, 160 115 C200 160, 240 130, 320 85 C295 105, 250 140, 215 130 C175 118, 140 85, 80 120 Z" fill="#1a365d" opacity="0.9"/>
+          <!-- Light blue wave 2 -->
+          <path d="M50 140 C100 80, 150 75, 205 110 C250 140, 290 120, 350 80 C320 110, 275 135, 240 120 C190 100, 150 85, 100 135 Z" fill="#2b6cb0" opacity="0.8"/>
+          <!-- Graduate cap 1 -->
+          <path d="M120 40 L145 30 L170 40 L145 50 Z" fill="#1a365d"/>
+          <circle cx="145" cy="58" r="14" fill="#1a365d"/>
+          <!-- Graduate cap 2 -->
+          <path d="M200 35 L225 25 L250 35 L225 45 Z" fill="#2b6cb0"/>
+          <circle cx="225" cy="53" r="14" fill="#2b6cb0"/>
+          <!-- Graduate cap 3 -->
+          <path d="M265 48 L288 38 L310 48 L288 57 Z" fill="#b7791f"/>
+          <circle cx="288" cy="65" r="13" fill="#b7791f"/>
+          <!-- Text at bottom -->
+          <text x="210" y="145" text-anchor="middle" font-family="'Plus Jakarta Sans', serif" font-size="14" font-weight="700" fill="#1a365d" letter-spacing="1">ΣΥΛΛΟΓΟΣ ΦΟΙΤΗΤΩΝ</text>
+          <line x1="120" y1="150" x2="300" y2="150" stroke="#1a365d" stroke-width="1.5"/>
+        </svg>
+      </div>
+
       <div class="header-text">
         <h1>Διαχείριση Μεταναστευτικών Ροών &amp; Πληθυσμού σε Κίνηση</h1>
-        <p class="subtitle">Ηλεκτρονικό Αποθετήριο Εργασιών &amp; Σύλλογος Φοιτητών / Αποφοίτων</p>
+        <p class="subtitle">Ηλεκτρονικό Καταθετήριο Εργασιών &amp; Πύλη Συλλόγου Φοιτητών / Αποφοίτων</p>
       </div>
     </div>
   </header>
 
-  <nav class="tabs-nav">
-    <button class="tab-btn active" data-tab="program">Το Πρόγραμμα</button>
-    <button class="tab-btn" data-tab="statute">Καταστατικό Συλλόγου</button>
-    <button class="tab-btn" data-tab="papers">Εργασίες ανά Μάθημα</button>
-    <button class="tab-btn" data-tab="submission">Υποβολή Εργασίας</button>
-    <button class="tab-btn" data-tab="news">Ανακοινώσεις - Νέα</button>
+  <nav class="tabs-nav" role="navigation" aria-label="Κύρια Πλοήγηση">
+    <button class="tab-btn active" data-tab="program" role="tab" aria-selected="true">📖 Το Πρόγραμμα</button>
+    <button class="tab-btn" data-tab="statute" role="tab" aria-selected="false">📜 Καταστατικό Συλλόγου</button>
+    <button class="tab-btn" data-tab="papers" role="tab" aria-selected="false">📚 Εργασίες</button>
+    <button class="tab-btn" data-tab="cinema" role="tab" aria-selected="false">🎬 Κινηματογραφική Ομάδα</button>
+    <button class="tab-btn" data-tab="news" role="tab" aria-selected="false">📢 Ανακοινώσεις - Νέα</button>
   </nav>
 
-  <main class="container">
-    <!-- Καρτέλα 1: Το Πρόγραμμα -->
-    <section id="program" class="tab-content active">
-      <h2>Το Πρόγραμμα Μεταπτυχιακών Σπουδών</h2>
-      <p>Το Διεπιστημονικό Πρόγραμμα επικεντρώνεται στη διερεύνηση, διαχείριση και ανάλυση των σύγχρονων μεταναστευτικών ροών, της προστασίας συνόρων και των θεμελιωδών δικαιωμάτων.</p>
-      
+  <main class="container" id="mainContent">
+
+    <!-- ΚΑΡΤΕΛΑ 1: ΤΟ ΠΡΟΓΡΑΜΜΑ -->
+    <section id="program" class="tab-content active" role="tabpanel">
       <div class="info-card">
-        <h3>Βασικοί Επιστημονικοί Πυλώνες:</h3>
-        <ul>
-          <li>Διεθνές, Ευρωπαϊκό &amp; Εθνικό Δίκαιο Ασύλου και Μετανάστευσης</li>
-          <li>Διαχείριση και Επιτήρηση Εξωτερικών Συνόρων</li>
-          <li>Πολιτικές Κοινωνικής Ένταξης και Προστασία Ευάλωτων Ομάδων</li>
-          <li>Κριτική Ανάλυση Πολιτικής &amp; Μεθοδολογία Έρευνας</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Καρτέλα 2: Καταστατικό Συλλόγου -->
-    <section id="statute" class="tab-content">
-      <h2>Καταστατικό του Συλλόγου</h2>
-      <p>Το επίσημο καταστατικό λειτουργίας και οι καταστατικοί σκοποί του Συλλόγου Φοιτητών και Αποφοίτων.</p>
-      <div class="pdf-box">
-        <p>Μπορείτε να διαβάσετε ή να αποθηκεύσετε το επίσημο έγγραφο:</p>
-        <a href="docs/katastatiko.pdf" target="_blank" class="btn">Προβολή Καταστατικού (PDF)</a>
-      </div>
-    </section>
-
-    <!-- Καρτέλα 3: Εργασίες ανά Μάθημα -->
-    <section id="papers" class="tab-content">
-      <h2>Αποθετήριο Επιστημονικών Εργασιών</h2>
-      
-      <!-- Πλαίσιο Αποποίησης Ευθύνης (Disclaimer) -->
-      <div class="disclaimer-banner">
-        <h4>⚠️ Δήλωση Αποποίησης Ευθύνης (Disclaimer)</h4>
+        <h2>Το Μεταπτυχιακό Πρόγραμμα</h2>
         <p>
-          Οι αναρτημένες εργασίες αποτελούν πνευματική ιδιοκτησία των συντακτών τους και εκφράζουν αποκλειστικά τις προσωπικές επιστημονικές τους απόψεις. 
-          Η πλήρης ευθύνη για την ακρίβεια των στοιχείων, τη γνησιότητα του περιεχομένου, την τήρηση των κανόνων ακαδημαϊκής δεοντολογίας και τη μη προσβολή δικαιωμάτων πνευματικής ιδιοκτησίας τρίτων βαρύνει <strong>αποκλειστικά και προσωπικά τους συγγραφείς</strong>. 
-          Ο ιστότοπος και ο Σύλλογος λειτουργούν αποκλειστικά ως μέσο διάχυσης της γνώσης και ουδεμία αστική, ποινική ή επιστημονική ευθύνη φέρουν για το περιεχόμενο των έργων.
+          Το Διεπιστημονικό Πρόγραμμα Μεταπτυχιακών Σπουδών (Δ.Π.Μ.Σ.) <strong>«Διαχείριση μεταναστευτικών ροών και πληθυσμού σε κίνηση»</strong> προσφέρει εξειδικευμένη ακαδημαϊκή και πρακτική γνώση γύρω από τις σύγχρονες προκλήσεις της μετακίνησης πληθυσμών, της διεθνούς προστασίας, των ανθρωπίνων δικαιωμάτων και της κοινωνικής ένταξης.
         </p>
-      </div>
 
-      <div class="search-controls">
-        <input type="text" id="searchInput" placeholder="Αναζήτηση με λέξη-κλειδί, συγγραφέα ή τίτλο εργασίας...">
-        <select id="courseFilter">
-          <option value="all">Όλα τα Μαθήματα</option>
-        </select>
-      </div>
+        <h3>Διάρθρωση Σπουδών &amp; Μαθήματα</h3>
+        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+          Το πρόγραμμα εκτείνεται σε 3 ακαδημαϊκά εξάμηνα (90 ECTS):
+        </p>
+        <ul class="styled-list">
+          <li><strong>Α' Εξάμηνο (30 ECTS):</strong> Μεταναστευτικό Δίκαιο: διεθνείς, ευρωπαϊκές και εθνικές διαστάσεις (8 ECTS), Η δημοσιογραφική κάλυψη και έρευνα στη μετανάστευση (8 ECTS), Πολιτισμική Διαμεσολάβηση (7 ECTS), Ιστορικές καταβολές του φαινομένου (7 ECTS), Διεθνείς σχέσεις και πληθυσμοί σε κίνηση (7 ECTS).</li>
+          <li><strong>Β' Εξάμηνο (30 ECTS):</strong> Οικονομικά της μετανάστευσης-αιτίες κι επιπτώσεις (8 ECTS), Πολιτικές θεωρίες και πρακτικές, προσφυγικό και πληθυσμοί σε κίνηση (8 ECTS), Προσφυγικό δίκαιο: διεθνείς, ευρωπαϊκές και εθνικές διαστάσεις (7 ECTS), Μέσα κοινωνικής δικτύωσης και πληθυσμοί σε κίνηση (7 ECTS), Διοίκηση δομών υποδοχής και φιλοξενίας (7 ECTS).</li>
+          <li><strong>Γ' Εξάμηνο (30 ECTS):</strong> Εκπόνηση και δημόσια υποστήριξη Μεταπτυχιακής Διπλωματικής Εργασίας.</li>
+        </ul>
 
-      <div id="papersGrid" class="papers-grid">
-        <!-- Εδώ φορτώνονται δυναμικά οι εργασίες από το data/papers.json -->
-      </div>
-    </section>
-
-    <!-- Καρτέλα 4: Οδηγίες Υποβολής & Συγκατάθεση -->
-    <section id="submission" class="tab-content">
-      <h2>Διαδικασία Υποβολής Εργασίας</h2>
-      <p>Κάθε φοιτητής ή απόφοιτος που επιθυμεί να αναρτήσει εργασία του στο αποθετήριο οφείλει να ακολουθήσει τα παρακάτω βήματα:</p>
-      
-      <div class="info-card">
-        <ol class="submission-steps">
-          <li><strong>Λήψη της Δήλωσης Συγκατάθεσης:</strong> Κατεβάστε το επίσημο έντυπο υπεύθυνης δήλωσης.</li>
-          <li><strong>Συμπλήρωση &amp; Υπογραφή:</strong> Συμπληρώστε τα στοιχεία της εργασίας και υπογράψτε το έντυπο (χειρόγραφα ή ψηφιακά μέσω gov.gr).</li>
-          <li><strong>Αποστολή Υλικού:</strong> Στείλτε με email στο <a href="mailto:info@example.com">info@example.com</a>:
-            <ul>
-              <li>Το αρχείο της εργασίας σε μορφή PDF.</li>
-              <li>Τη συμπληρωμένη &amp; υπογεγραμμένη Δήλωση Συγκατάθεσης.</li>
-              <li>Μια σύντομη περίληψη και 4-5 λέξεις-κλειδιά.</li>
-            </ul>
-          </li>
-        </ol>
-
-        <div style="margin-top: 1.5rem; text-align: center;">
-          <a href="docs/dilosi_sygkatathesis.pdf" target="_blank" class="btn btn-accent">
-            📄 Λήψη Εντύπου Συγκατάθεσης (PDF)
-          </a>
+        <div class="callout-box">
+          <h3>Εγγραφή στον Σύλλογο</h3>
+          <p>Όλοι οι εγγεγραμμένοι φοιτητές και οι απόφοιτοι του προγράμματος μπορούν να εγγραφούν στο Μητρώο Μελών για συμμετοχή στις δράσεις και τις γενικές συνελεύσεις.</p>
+          <div style="margin-top: 0.8rem;">
+            <button type="button" class="btn" onclick="switchToTab('statute')">Μάθετε περισσότερα στο Καταστατικό &rarr;</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Καρτέλα 5: Ανακοινώσεις - Νέα -->
-    <section id="news" class="tab-content">
-      <h2>Ανακοινώσεις &amp; Νέα</h2>
-      <article class="news-item">
-        <span class="news-date">Σεπτέμβριος 2026</span>
-        <h3>Έναρξη Λειτουργίας Ηλεκτρονικού Αποθετηρίου</h3>
-        <p>Τίθεται σε δημόσια λειτουργία η πλατφόρμα προβολής και καταλογογράφησης των ακαδημαϊκών εργασιών του μεταπτυχιακού προγράμματος.</p>
-      </article>
-      <article class="news-item">
-        <span class="news-date">Αύγουστος 2026</span>
-        <h3>Πρόσκληση Συλλογής Εργασιών</h3>
-        <p>Παρακαλούνται οι φοιτητές που έχουν ολοκληρώσει επιτυχώς τις εργασίες τους να αποστείλουν το υλικό συνοδευόμενο από τη σχετική δήλωση συγκατάθεσης.</p>
-      </article>
+    <!-- ΚΑΡΤΕΛΑ 2: ΚΑΤΑΣΤΑΤΙΚΟ ΣΥΛΛΟΓΟΥ -->
+    <section id="statute" class="tab-content" role="tabpanel">
+      <div class="info-card">
+        <h2>Καταστατικό του Συλλόγου</h2>
+        <p>
+          Ο Σύλλογος Φοιτητών και Αποφοίτων έχει ως πρωταρχικό στόχο τη σύσφιξη των επιστημονικών δεσμών, τη διάδοση των πρωτότυπων ερευνητικών εργασιών, την ενίσχυση της επαγγελματικής δικτύωσης και τη συνεχή υποστήριξη των μελών της πανεπιστημιακής κοινότητας.
+        </p>
+
+        <h3>Σκοποί και Δράσεις</h3>
+        <ul class="styled-list">
+          <li><strong>Προαγωγή Επιστημονικής Έρευνας:</strong> Υποστήριξη του ψηφιακού αποθετηρίου και διοργάνωση επιστημονικών ημερίδων.</li>
+          <li><strong>Συνεργασία με Φορείς &amp; ΜΚΟ:</strong> Διασύνδεση με διεθνείς οργανισμούς (UNHCR, IOM), δημόσιους φορείς και οργανώσεις της κοινωνίας των πολιτών.</li>
+          <li><strong>Πολιτιστικές &amp; Κοινωνικές Παρεμβάσεις:</strong> Λειτουργία της Κινηματογραφικής Ομάδας, εργαστήρια και δημόσιες συζητήσεις.</li>
+        </ul>
+
+        <div class="callout-box">
+          <h3>Επίσημο Έγγραφο Καταστατικού</h3>
+          <p>Μπορείτε να διαβάσετε ολόκληρο το εγκεκριμένο καταστατικό λειτουργίας του συλλόγου:</p>
+          <div style="margin-top: 0.8rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="docs/katastatiko.pdf" target="_blank" class="btn">
+              📥 Άνοιγμα / Λήψη Καταστατικού (PDF)
+            </a>
+            <button type="button" class="btn btn-outline" onclick="showToast('Το καταστατικό περιλαμβάνει 28 άρθρα εγκεκριμένα από το αρμόδιο Πρωτοδικείο.')">
+              ℹ️ Στοιχεία Καταστατικού
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- ΚΑΡΤΕΛΑ 3: ΕΡΓΑΣΙΕΣ -->
+    <section id="papers" class="tab-content" role="tabpanel">
+
+      <!-- Disclaimer Banner σύμφωνα με τη Δήλωση Συγκατάθεσης -->
+      <div class="disclaimer-banner">
+        <h4>⚠️ Δήλωση Αποποίησης Ευθύνης (Disclaimer) &amp; Ακαδημαϊκή Δεοντολογία</h4>
+        <p>
+          Οι αναρτημένες εργασίες αποτελούν αποκλειστική πνευματική ιδιοκτησία των συγγραφέων τους και απηχούν τις προσωπικές επιστημονικές τους απόψεις. Η ευθύνη για την ακρίβεια των στοιχείων, τη γνησιότητα των κειμένων, την τήρηση των κανόνων περί λογοκλοπής και τη μη παραβίαση δικαιωμάτων τρίτων βαρύνει <strong>αποκλειστικά και μόνο τους συντάκτες</strong>. Ο ιστότοπος και ο Σύλλογος λειτουργούν αποκλειστικά ως μέσο διάχυσης της γνώσης και ουδεμία νομική ή αστική ευθύνη φέρουν.
+        </p>
+        <div class="consent-download-wrapper">
+          <a href="docs/dilosi_sygkatathesis.pdf" target="_blank" class="btn btn-outline btn-sm">
+            📄 Λήψη Έντυπου Υπεύθυνης Δήλωσης &amp; Συγκατάθεσης (PDF)
+          </a>
+          <button type="button" class="btn btn-sm" onclick="openSubmissionModal()">
+            📤 Οδηγίες &amp; Όροι Υποβολής Εργασίας
+          </button>
+        </div>
+      </div>
+
+      <!-- Πλαίσιο Αναζήτησης & Φίλτρων -->
+      <div class="controls-panel">
+        <div class="filter-row">
+          <div class="control-group">
+            <label for="semesterFilter">Επιλογή Εξαμήνου:</label>
+            <select id="semesterFilter">
+              <option value="all">Όλα τα Εξάμηνα</option>
+              <option value="1">Α' Εξάμηνο</option>
+              <option value="2">Β' Εξάμηνο</option>
+            </select>
+          </div>
+
+          <div class="control-group flex-2">
+            <label for="courseSelect">Επιλογή Μαθήματος:</label>
+            <select id="courseSelect">
+              <option value="all">Όλα τα Μαθήματα</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="search-row">
+          <label for="searchInput">Αναζήτηση Κειμένου:</label>
+          <div class="search-input-wrapper">
+            <input 
+              type="text" 
+              id="searchInput" 
+              placeholder="Πληκτρολογήστε λέξεις-κλειδιά, τίτλο εργασίας ή όνομα συγγραφέα..."
+              autocomplete="off"
+            >
+            <button id="clearSearchBtn" class="clear-btn" title="Καθαρισμός αναζήτησης">&times;</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Κάρτα Πληροφοριών Επιλεγμένου Μαθήματος -->
+      <div id="courseInfoCard" class="course-info-card">
+        <h3 id="infoCourseTitle">Τίτλος Μαθήματος</h3>
+        <p><strong>Διδάσκοντες / ουσες:</strong> <span id="infoInstructors">-</span></p>
+        <div class="badges-row">
+          <span id="infoSemesterBadge" class="badge">Εξάμηνο</span>
+          <span id="infoType" class="badge badge-gray">Τύπος</span>
+          <span id="infoEcts" class="badge badge-accent">ECTS</span>
+        </div>
+      </div>
+
+      <!-- Μπάρα Καταμέτρησης Αποτελεσμάτων -->
+      <div class="results-count-bar">
+        <span id="resultsCount">Φόρτωση εργασιών...</span>
+        <button type="button" id="resetFilterBtn" class="btn btn-outline btn-sm" style="display:none;" onclick="resetFilters()">
+          🔄 Επαναφορά Όλων
+        </button>
+      </div>
+
+      <!-- Πλέγμα Προβολής Εργασιών -->
+      <div id="papersGrid" class="papers-grid" aria-live="polite">
+        <!-- Δημιουργείται αυτόματα από τη JavaScript -->
+      </div>
+    </section>
+
+    <!-- ΚΑΡΤΕΛΑ 4: ΚΙΝΗΜΑΤΟΓΡΑΦΙΚΗ ΟΜΑΔΑ -->
+    <section id="cinema" class="tab-content" role="tabpanel">
+      <div class="info-card">
+        <h2>Κινηματογραφική Ομάδα Συλλόγου</h2>
+        <p>
+          Η Κινηματογραφική Ομάδα αποτελεί μια αυτόνομη πρωτοβουλία των φοιτητών και αποφοίτων του Προγράμματος με αντικείμενο την προβολή, ανάλυση και συζήτηση ταινιών και ντοκιμαντέρ γύρω από τη μετανάστευση, την προσφυγική εμπειρία, τα ανθρώπινα δικαιώματα και τα κοινωνικά κινήματα.
+        </p>
+
+        <div class="callout-box" style="background: #edf2f7;">
+          <h3>Δράσεις &amp; Θεματικοί Κύκλοι Προβολών</h3>
+          <ul class="styled-list">
+            <li><strong>Προβολές Ντοκιμαντέρ:</strong> Καταγραφή διαδρομών, μαρτυρίες προσφύγων και σύγχρονες συνοριακές πραγματικότητες.</li>
+            <li><strong>Κινηματογραφικές Λέσχες &amp; Συζητήσεις:</strong> Ανοιχτές αναλύσεις μετά το τέλος των προβολών με συμμετοχή δημιουργών, ακαδημαϊκών και εκπροσώπων φορέων.</li>
+            <li><strong>Αφιερώματα:</strong> Σινεμά της Μεσογείου, σύγχρονο ευρωπαϊκό σινεμά και κοινωνικός ρεαλισμός.</li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Ενδεικτικό Πρόγραμμα Προβολών</h3>
+        <div class="cinema-grid">
+          <div class="cinema-card">
+            <div>
+              <h4>Fuocoammare (Φωτιά στη Θάλασσα)</h4>
+              <div class="cinema-meta">Σκηνοθεσία: Gianfranco Rosi • 114'</div>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Η καθημερινότητα στη Λαμπεντούζα και η ωμή πραγματικότητα των διασώσεων στη Μεσόγειο.
+              </p>
+            </div>
+            <div style="margin-top: 1rem;">
+              <span class="badge badge-accent">Επόμενη Προβολή</span>
+            </div>
+          </div>
+
+          <div class="cinema-card">
+            <div>
+              <h4>Le Havre (Το Λιμάνι της Χάβρης)</h4>
+              <div class="cinema-meta">Σκηνοθεσία: Aki Kaurismäki • 93'</div>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Ένα βαθιά ουμανιστικό έργο για την έμπρακτη αλληλεγγύη απέναντι σε έναν ανήλικο πρόσφυγα.
+              </p>
+            </div>
+            <div style="margin-top: 1rem;">
+              <span class="badge badge-gray">Ολοκληρώθηκε</span>
+            </div>
+          </div>
+
+          <div class="cinema-card">
+            <div>
+              <h4>Flee (Φυγή)</h4>
+              <div class="cinema-meta">Σκηνοθεσία: Jonas Poher Rasmussen • 89'</div>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Η συγκλονιστική animated μαρτυρία ενός ασυνόδευτου ανηλίκου από το Αφγανιστάν προς την Ευρώπη.
+              </p>
+            </div>
+            <div style="margin-top: 1rem;">
+              <span class="badge badge-gray">Ολοκληρώθηκε</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-box" style="margin-top: 1.75rem;">
+          <h3>Συμμετοχή &amp; Προτάσεις Ταινιών</h3>
+          <p>Οι προβολές είναι ανοιχτές σε όλα τα μέλη και τους φίλους του Συλλόγου. Εάν θέλετε να προτείνετε κάποια ταινία ή να συμμετάσχετε στην οργανωτική επιτροπή, επικοινωνήστε μαζί μας.</p>
+          <div style="margin-top: 0.8rem;">
+            <a href="mailto:info@example.com?subject=Κινηματογραφική%20Ομάδα" class="btn">
+              ✉️ Επικοινωνία με την Κινηματογραφική Ομάδα
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ΚΑΡΤΕΛΑ 5: ΝΕΑ - ΑΝΑΚΟΙΝΩΣΕΙΣ -->
+    <section id="news" class="tab-content" role="tabpanel">
+      <div class="info-card">
+        <h2>Ανακοινώσεις &amp; Νέα</h2>
+
+        <article class="news-item">
+          <span class="news-date">Σεπτέμβριος 2026</span>
+          <h3>Έναρξη Λειτουργίας του Ηλεκτρονικού Καταθετηρίου</h3>
+          <p>
+            Ξεκινά επίσημα η ψηφιακή συγκέντρωση και προβολή των εργασιών των μεταπτυχιακών φοιτητών. Για την ανάρτηση απαιτείται η αποστολή του PDF μαζί με τη σχετική υπεύθυνη δήλωση συγκατάθεσης.
+          </p>
+        </article>
+
+        <article class="news-item">
+          <span class="news-date">Σεπτέμβριος 2026</span>
+          <h3>Πρώτη Συνάντηση Κινηματογραφικής Ομάδας</h3>
+          <p>
+            Ανακοινώνεται ο προγραμματισμός των πρώτων προβολών της νέας ακαδημαϊκής χρονιάς με θεματική τις σύγχρονες μεταναστευτικές ροές στον κινηματογράφο.
+          </p>
+        </article>
+
+        <article class="news-item">
+          <span class="news-date">Αύγουστος 2026</span>
+          <h3>Διαδικασία Υποβολής Εργασιών</h3>
+          <p>
+            Οι ενδιαφερόμενοι φοιτητές μπορούν να κατεβάσουν το έντυπο υπεύθυνης δήλωσης από την καρτέλα «Εργασίες» και να το υποβάλουν δεόντως συμπληρωμένο και υπογεγραμμένο.
+          </p>
+        </article>
+      </div>
+    </section>
+
   </main>
 
   <footer>
-    <div class="footer-content">
-      <div class="footer-disclaimer">
-        <p><small><strong>Σημείωση:</strong> Οι απόψεις και τα κείμενα των εργασιών εκφράζουν αποκλειστικά τους συγγραφείς τους. Ο ιστότοπος δεν φέρει ευθύνη για τη νομιμότητα ή την επιστημονική εγκυρότητα του αναρτημένου περιεχομένου.</small></p>
-      </div>
+    <div class="footer-inner">
+      <p class="footer-disclaimer">
+        Οι εργασίες εκφράζουν αποκλειστικά τους συγγραφείς τους. Ο ιστότοπος και ο Σύλλογος δεν αναλαμβάνουν ευθύνη για το περιεχόμενο, την ακρίβεια των πηγών ή τυχόν παραβιάσεις πνευματικών δικαιωμάτων τρίτων.
+      </p>
+
       <div class="social-links">
         <span class="social-label">Σύνδεσμοι Συλλόγου:</span>
         <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+        <span>•</span>
         <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <span>•</span>
         <a href="https://x.com" target="_blank" rel="noopener">X (Twitter)</a>
+        <span>•</span>
         <a href="mailto:info@example.com">Email Επικοινωνίας</a>
       </div>
-      <p class="copy">&copy; 2026 Σύλλογος Μεταπτυχιακού «Διαχείριση Μεταναστευτικών Ροών»</p>
+
+      <div class="copy">
+        &copy; 2026 Π.Μ.Σ. «Διαχείριση μεταναστευτικών ροών και πληθυσμού σε κίνηση» • Σύλλογος Φοιτητών &amp; Αποφοίτων
+      </div>
     </div>
   </footer>
 
-  <script src="js/app.js"></script>
+  <div id="submissionModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalHeading">📤 Διαδικασία Ανάρτησης Εργασίας</h3>
+        <button type="button" class="close-modal-btn" onclick="closeSubmissionModal()">&times;</button>
+      </div>
+      <div style="font-size: 0.93rem; color: var(--text);">
+        <p style="margin-bottom: 0.8rem;">
+          Για να συμπεριληφθεί η εργασία σας στο Ηλεκτρονικό Καταθετήριο, ακολουθήστε τα παρακάτω βήματα:
+        </p>
+        <ol style="margin-left: 1.25rem; margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li>Κατεβάστε και συμπληρώστε την <strong>Υπεύθυνη Δήλωση Συγκατάθεσης</strong>.</li>
+          <li>Υπογράψτε τη δήλωση ψηφιακά (π.χ. gov.gr) ή χειρόγραφα.</li>
+          <li>Αποστείλετε με email το τελικό <strong>PDF της εργασίας</strong> και το <strong>υπογεγραμμένο έντυπο</strong> στο <a href="mailto:info@example.com">info@example.com</a>.</li>
+        </ol>
+
+        <div style="background: var(--warning-bg); border-left: 3px solid var(--warning-border); padding: 0.75rem; border-radius: var(--radius-sm); margin-bottom: 1.2rem; font-size: 0.85rem; color: var(--warning-text);">
+          <strong>Υπενθύμιση Όρων (Άρθρο 2 &amp; 3 Δήλωσης):</strong><br>
+          Η εργασία πρέπει να είναι πρωτότυπο επιστημονικό έργο, με πλήρεις βιβλιογραφικές παραπομπές και πιστή τήρηση των κανόνων δεοντολογίας. Ο συγγραφέας φέρει προσωπικά την αποκλειστική επιστημονική και αστική ευθύνη.
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+          <a href="docs/dilosi_sygkatathesis.pdf" target="_blank" class="btn btn-sm">📄 Λήψη Δήλωσης (PDF)</a>
+          <button type="button" class="btn btn-outline btn-sm" onclick="closeSubmissionModal()">Κλείσιμο</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Βιβλιογραφικής Παραπομπής -->
+  <div id="citationModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="citHeading">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="citHeading">📋 Βιβλιογραφική Παραπομπή (APA 7th)</h3>
+        <button type="button" class="close-modal-btn" onclick="closeCitationModal()">&times;</button>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+        Μπορείτε να αντιγράψετε την παραπομπή για χρήση στην έρευνά σας:
+      </p>
+      <div id="citationText" class="citation-box"></div>
+      <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem;">
+        <button type="button" class="btn btn-sm" onclick="copyCitationText()">📋 Αντιγραφή Παραπομπής</button>
+        <button type="button" class="btn btn-outline btn-sm" onclick="closeCitationModal()">Κλείσιμο</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /* ==========================================================================
+       1. ΔΕΔΟΜΕΝΑ ΜΑΘΗΜΑΤΩΝ (Επίσημος Οδηγός Σπουδών)
+       ========================================================================== */
+    const coursesData = [
+      // 1ο Εξάμηνο
+      {
+        id: "m1_1",
+        semester: 1,
+        title: "Μεταναστευτικό Δίκαιο: διεθνείς, ευρωπαϊκές και εθνικές διαστάσεις",
+        type: "Υποχρεωτικό (Υ)",
+        ects: 8,
+        instructors: "Δ. Λέντζης, Κ. Ρόκας, Β. Περγαντής, Α. Μα. Κώνστα"
+      },
+      {
+        id: "m1_2",
+        semester: 1,
+        title: "Η δημοσιογραφική κάλυψη και έρευνα στη μετανάστευση",
+        type: "Υποχρεωτικό (Υ)",
+        ects: 8,
+        instructors: "Σ. Καϊτατζή, Ι. Κωσταρέλλα, Γ. Χρηστίδης, Π. Νεράντζης"
+      },
+      {
+        id: "m1_3",
+        semester: 1,
+        title: "Πολιτισμική Διαμεσολάβηση",
+        type: "Επιλογής (Ε)",
+        ects: 7,
+        instructors: "Μ. Καβάλα, Θ. Τζήμας"
+      },
+      {
+        id: "m1_4",
+        semester: 1,
+        title: "Ιστορικές καταβολές του φαινομένου",
+        type: "Επιλογής (Ε)",
+        ects: 7,
+        instructors: "Κ. Τζιάρας"
+      },
+      {
+        id: "m1_5",
+        semester: 1,
+        title: "Διεθνείς σχέσεις και πληθυσμοί σε κίνηση",
+        type: "Επιλογής (Ε)",
+        ects: 7,
+        instructors: "Θ. Τζήμας"
+      },
+
+      // 2ο Εξάμηνο
+      {
+        id: "m2_1",
+        semester: 2,
+        title: "Οικονομικά της μετανάστευσης-αιτίες κι επιπτώσεις",
+        type: "Υποχρεωτικό (Υ)",
+        ects: 8,
+        instructors: "Γρ. Ζαρωτιάδης"
+      },
+      {
+        id: "m2_2",
+        semester: 2,
+        title: "Πολιτικές θεωρίες και πρακτικές, προσφυγικό και πληθυσμοί σε κίνηση",
+        type: "Υποχρεωτικό (Υ)",
+        ects: 8,
+        instructors: "Σπ. Μαρκέτος"
+      },
+      {
+        id: "m2_3",
+        semester: 2,
+        title: "Προσφυγικό δίκαιο: διεθνείς, ευρωπαϊκές και εθνικές διαστάσεις",
+        type: "Επιλογής (Ε)",
+        ects: 7,
+        instructors: "Άννα Μαρία Κώνστα, Β. Περγαντής"
+      },
+      {
+        id: "m2_4",
+        semester: 2,
+        title: "Μέσα κοινωνικής δικτύωσης και πληθυσμοί σε κίνηση",
+        type: "Επιλογής (Ε)",
+        ects: 7,
+        instructors: "Νάγια Καλφέλη"
+      },
+      {
+        id: "m2_5",
+        semester: 2,
+        title: "Διοίκηση δομών υποδοχής και φιλοξενίας",
+        type: "Επιλογής (Ε)",
+        ects: 7,
+        instructors: "Κ. Καμβύση"
+      }
+    ];
+
+    /* ==========================================================================
+       2. ΑΡΧΙΚΑ ΔΕΔΟΜΕΝΑ ΕΡΓΑΣΙΩΝ (papers.json fallback)
+       ========================================================================== */
+    const fallbackPapers = [
+      {
+        id: 1,
+        title: "Η αρχή της μη επαναπροώθησης και οι σύγχρονες ευρωπαϊκές πολιτικές συνόρων",
+        author: "Ιωάννης Παπαδόπουλος",
+        year: 2025,
+        course: "Μεταναστευτικό Δίκαιο: διεθνείς, ευρωπαϊκές και εθνικές διαστάσεις",
+        keywords: ["μη επαναπροώθηση", "άσυλο", "σύνορα", "ΕΕ"],
+        pdfUrl: "docs/paper1.pdf"
+      },
+      {
+        id: 2,
+        title: "Οικονομικές συνέπειες της ένταξης μεταναστευτικών πληθυσμών στην ελληνική αγορά εργασίας",
+        author: "Μαρία Οικονόμου",
+        year: 2026,
+        course: "Οικονομικά της μετανάστευσης-αιτίες κι επιπτώσεις",
+        keywords: ["οικονομία", "αγορά εργασίας", "ένταξη", "ανάπτυξη"],
+        pdfUrl: "docs/paper2.pdf"
+      },
+      {
+        id: 3,
+        title: "Πλαισίωση των διασώσεων στη Μεσόγειο από τον ελληνικό έντυπο και ηλεκτρονικό τύπο",
+        author: "Νικόλαος Γεωργίου",
+        year: 2026,
+        course: "Η δημοσιογραφική κάλυψη και έρευνα στη μετανάστευση",
+        keywords: ["ΜΜΕ", "δημοσιογραφία", "Μεσόγειος", "έρευνα"],
+        pdfUrl: "docs/paper3.pdf"
+      }
+    ];
+
+    let allPapers = [...fallbackPapers];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setupTabs();
+      buildCourseOptions("all");
+      setupEventListeners();
+      loadPapersData();
+    });
+
+    // Χειρισμός αποτυχίας εικόνας λογοτύπου
+    function handleLogoError(img) {
+      img.style.display = "none";
+      const svg = document.getElementById("logoSvgFallback");
+      if (svg) svg.style.display = "flex";
+    }
+
+    // Διαχείριση καρτελών (Tabs)
+    function setupTabs() {
+      const buttons = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".tab-content");
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const target = btn.dataset.tab;
+          buttons.forEach(b => {
+            b.classList.remove("active");
+            b.setAttribute("aria-selected", "false");
+          });
+          contents.forEach(c => c.classList.remove("active"));
+
+          btn.classList.add("active");
+          btn.setAttribute("aria-selected", "true");
+          const targetEl = document.getElementById(target);
+          if (targetEl) targetEl.classList.add("active");
+        });
+      });
+    }
+
+    function switchToTab(tabId) {
+      const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+      if (btn) btn.click();
+    }
+
+    function buildCourseOptions(filteredSemester = "all") {
+      const courseSelect = document.getElementById("courseSelect");
+      const currentSelected = courseSelect.value;
+      courseSelect.innerHTML = '<option value="all">Όλα τα Μαθήματα</option>';
+
+      const s1Courses = coursesData.filter(c => c.semester === 1);
+      const s2Courses = coursesData.filter(c => c.semester === 2);
+
+      if (filteredSemester === "all" || filteredSemester === "1") {
+        const group1 = document.createElement("optgroup");
+        group1.label = "── Α' Εξάμηνο ──";
+        s1Courses.forEach(c => {
+          const opt = document.createElement("option");
+          opt.value = c.title;
+          opt.textContent = c.title;
+          group1.appendChild(opt);
+        });
+        courseSelect.appendChild(group1);
+      }
+
+      if (filteredSemester === "all" || filteredSemester === "2") {
+        const group2 = document.createElement("optgroup");
+        group2.label = "── Β' Εξάμηνο ──";
+        s2Courses.forEach(c => {
+          const opt = document.createElement("option");
+          opt.value = c.title;
+          opt.textContent = c.title;
+          group2.appendChild(opt);
+        });
+        courseSelect.appendChild(group2);
+      }
+
+      // Επαναφορά τιμής εάν εξακολουθεί να υπάρχει στις επιλογές
+      if (currentSelected && Array.from(courseSelect.options).some(o => o.value === currentSelected)) {
+        courseSelect.value = currentSelected;
+      }
+    }
+
+    async function loadPapersData() {
+      try {
+        // Δοκιμή φόρτωσης papers.json αν διατίθεται στον server
+        const res = await fetch("papers.json");
+        if (res.ok) {
+          const json = await res.json();
+          if (Array.isArray(json) && json.length > 0) {
+            allPapers = json;
+          }
+        }
+      } catch (err) {
+        // Σιωπηρή μετάβαση στο ενσωματωμένο fallback (π.χ. σε local file:// execution)
+      }
+      filterAll();
+    }
+
+    function updateCourseCard(selectedCourseTitle) {
+      const card = document.getElementById("courseInfoCard");
+      if (!selectedCourseTitle || selectedCourseTitle === "all") {
+        card.style.display = "none";
+        return;
+      }
+
+      const course = coursesData.find(c => c.title === selectedCourseTitle);
+      if (course) {
+        document.getElementById("infoCourseTitle").textContent = course.title;
+        document.getElementById("infoInstructors").textContent = course.instructors;
+        document.getElementById("infoSemesterBadge").textContent = course.semester === 1 ? "Α' Εξάμηνο" : "Β' Εξάμηνο";
+        document.getElementById("infoType").textContent = course.type;
+        document.getElementById("infoEcts").textContent = `${course.ects} ECTS`;
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    }
+
+    function renderPapers(papers) {
+      const grid = document.getElementById("papersGrid");
+      const countEl = document.getElementById("resultsCount");
+      grid.innerHTML = "";
+
+      countEl.textContent = `Εμφανίζονται ${papers.length} από ${allPapers.length} εργασίες`;
+
+      if (papers.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; color: var(--text-light); padding: 3rem 1rem; background: #ffffff; border: 1px dashed var(--border); border-radius: var(--radius-md);">
+            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔍</div>
+            <p style="font-weight: 600; font-size: 1.05rem; color: var(--text);">Δεν βρέθηκαν εργασίες</p>
+            <p style="font-size: 0.9rem; margin-top: 0.25rem;">Δοκιμάστε να αλλάξετε τα φίλτρα εξαμήνου ή τη λέξη-κλειδί αναζήτησης.</p>
+          </div>
+        `;
+        return;
+      }
+
+      papers.forEach(p => {
+        const courseObj = coursesData.find(c => c.title === p.course);
+        const instructorsText = courseObj ? courseObj.instructors : (p.instructors || "-");
+        const semesterLabel = courseObj ? (courseObj.semester === 1 ? "Α' Εξάμηνο" : "Β' Εξάμηνο") : "Μεταπτυχιακό";
+
+        const card = document.createElement("div");
+        card.className = "paper-card";
+        card.innerHTML = `
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--secondary); text-transform: uppercase;">${semesterLabel}</span>
+              <span style="font-size: 0.8rem; color: var(--text-light); font-weight: 600;">${p.year}</span>
+            </div>
+            <h3>${p.title}</h3>
+            <p class="paper-meta"><strong>Συγγραφέας:</strong> ${p.author}</p>
+            <p class="paper-meta"><strong>Μάθημα:</strong> ${p.course}</p>
+            <p class="paper-meta"><strong>Διδάσκοντες:</strong> ${instructorsText}</p>
+            <div class="tags">
+              ${(p.keywords || []).map(k => `<span class="tag">#${k}</span>`).join("")}
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.85rem;">
+            <a href="${p.pdfUrl}" target="_blank" class="btn btn-sm" style="flex: 1;">📥 Προβολή / Λήψη PDF</a>
+            <button type="button" class="btn btn-outline btn-sm" onclick="openCitationModal('${escapeAttr(p.author)}', ${p.year}, '${escapeAttr(p.title)}', '${escapeAttr(p.course)}')">📋 Παραπομπή</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function escapeAttr(str) {
+      if (!str) return '';
+      return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    function filterAll() {
+      const semesterFilter = document.getElementById("semesterFilter");
+      const courseSelect = document.getElementById("courseSelect");
+      const searchInput = document.getElementById("searchInput");
+      const clearBtn = document.getElementById("clearSearchBtn");
+      const resetBtn = document.getElementById("resetFilterBtn");
+
+      const semesterVal = semesterFilter ? semesterFilter.value : "all";
+      const courseVal = courseSelect ? courseSelect.value : "all";
+      const term = searchInput ? searchInput.value.toLowerCase().trim() : "";
+
+      if (clearBtn) {
+        clearBtn.style.display = term.length > 0 ? "block" : "none";
+      }
+
+      const isFiltered = semesterVal !== "all" || courseVal !== "all" || term.length > 0;
+      if (resetBtn) {
+        resetBtn.style.display = isFiltered ? "inline-flex" : "none";
+      }
+
+      updateCourseCard(courseVal);
+
+      const filtered = allPapers.filter(p => {
+        const cObj = coursesData.find(c => c.title === p.course);
+        const paperSemester = cObj ? String(cObj.semester) : String(p.semester || "");
+
+        const matchesSemester = (semesterVal === "all" || paperSemester === semesterVal);
+        const matchesCourse = (courseVal === "all" || p.course === courseVal);
+
+        const matchesText = 
+          !term ||
+          p.title.toLowerCase().includes(term) ||
+          p.author.toLowerCase().includes(term) ||
+          (p.keywords && p.keywords.some(k => k.toLowerCase().includes(term)));
+
+        return matchesSemester && matchesCourse && matchesText;
+      });
+
+      renderPapers(filtered);
+    }
+
+    function resetFilters() {
+      document.getElementById("semesterFilter").value = "all";
+      buildCourseOptions("all");
+      document.getElementById("courseSelect").value = "all";
+      document.getElementById("searchInput").value = "";
+      filterAll();
+    }
+
+    function setupEventListeners() {
+      const semesterFilter = document.getElementById("semesterFilter");
+      const courseSelect = document.getElementById("courseSelect");
+      const searchInput = document.getElementById("searchInput");
+      const clearBtn = document.getElementById("clearSearchBtn");
+
+      if (semesterFilter) {
+        semesterFilter.addEventListener("change", () => {
+          buildCourseOptions(semesterFilter.value);
+          filterAll();
+        });
+      }
+
+      if (courseSelect) {
+        courseSelect.addEventListener("change", filterAll);
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", filterAll);
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          searchInput.value = "";
+          searchInput.focus();
+          filterAll();
+        });
+      }
+    }
+
+    function openSubmissionModal() {
+      document.getElementById("submissionModal").classList.add("active");
+    }
+
+    function closeSubmissionModal() {
+      document.getElementById("submissionModal").classList.remove("active");
+    }
+
+    function openCitationModal(author, year, title, course) {
+      const text = `${author} (${year}). ${title} [Ακαδημαϊκή εργασία στο μάθημα: ${course}]. Ηλεκτρονικό Καταθετήριο Εργασιών Δ.Π.Μ.Σ. «Διαχείριση Μεταναστευτικών Ροών και Πληθυσμού σε Κίνηση».`;
+      document.getElementById("citationText").textContent = text;
+      document.getElementById("citationModal").classList.add("active");
+    }
+
+    function closeCitationModal() {
+      document.getElementById("citationModal").classList.remove("active");
+    }
+
+    function copyCitationText() {
+      const text = document.getElementById("citationText").textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast("Η βιβλιογραφική παραπομπή αντιγράφηκε επιτυχώς!");
+          closeCitationModal();
+        }).catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+        showToast("Η βιβλιογραφική παραπομπή αντιγράφηκε επιτυχώς!");
+      } catch (e) {
+        showToast("Παρακαλώ αντιγράψτε το κείμενο χειροκίνητα.");
+      }
+      document.body.removeChild(ta);
+      closeCitationModal();
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById("toastNotification");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => {
+        t.classList.remove("show");
+      }, 3500);
+    }
+
+    // Κλείσιμο των Modals με κλικ εκτός πλαισίου
+    window.addEventListener("click", (e) => {
+      const subModal = document.getElementById("submissionModal");
+      const citModal = document.getElementById("citationModal");
+      if (e.target === subModal) closeSubmissionModal();
+      if (e.target === citModal) closeCitationModal();
+    });
+  </script>
 </body>
 </html>

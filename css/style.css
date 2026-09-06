@@ -22,34 +22,43 @@ header { background: var(--primary); color: #fff; padding: 2rem 1rem; }
 
 /* Navigation Tabs */
 .tabs-nav { display: flex; justify-content: center; background: #fff; border-bottom: 2px solid var(--border); flex-wrap: wrap; }
-.tab-btn { background: none; border: none; padding: 1rem 1.25rem; font-size: 0.92rem; font-weight: 600; cursor: pointer; color: #4a5568; border-bottom: 3px solid transparent; transition: all 0.2s; }
+.tab-btn { background: none; border: none; padding: 1rem 1.4rem; font-size: 0.95rem; font-weight: 600; cursor: pointer; color: #4a5568; border-bottom: 3px solid transparent; transition: all 0.2s; }
 .tab-btn:hover { color: var(--secondary); }
 .tab-btn.active { color: var(--secondary); border-color: var(--secondary); background: #ebf8ff; }
 
-/* Main Container & Tabs Content */
-.container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; min-height: 55vh; }
+/* Container & Tab Content */
+.container { max-width: 1050px; margin: 2rem auto; padding: 0 1rem; min-height: 55vh; }
 .tab-content { display: none; }
 .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
 
 .info-card, .pdf-box { background: #fff; border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin-top: 1rem; }
-.info-card ul, .submission-steps { margin-left: 1.5rem; margin-top: 0.5rem; }
-.submission-steps li { margin-bottom: 0.75rem; }
+.info-card ul { margin-left: 1.5rem; margin-top: 0.5rem; }
 
 /* Disclaimer Banner */
-.disclaimer-banner { background-color: var(--warning-bg); border-left: 4px solid var(--warning-border); padding: 1rem 1.25rem; border-radius: 4px; margin: 1.5rem 0; font-size: 0.88rem; color: #744210; line-height: 1.5; }
+.disclaimer-banner { background-color: var(--warning-bg); border-left: 4px solid var(--warning-border); padding: 1.2rem; border-radius: 4px; margin: 1.2rem 0 1.8rem 0; font-size: 0.88rem; color: #744210; line-height: 1.5; }
 .disclaimer-banner h4 { margin-bottom: 0.4rem; color: #9c4221; font-size: 0.95rem; }
+.consent-download-wrapper { margin-top: 0.8rem; }
 
-/* Search Controls */
-.search-controls { display: flex; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap; }
-.search-controls input, .search-controls select { padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.95rem; }
-.search-controls input { flex: 2; min-width: 250px; }
-.search-controls select { flex: 1; min-width: 200px; }
+/* Controls Panel (Εξάμηνο, Μάθημα, Αναζήτηση) */
+.controls-panel { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.filter-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.control-group { display: flex; flex-direction: column; flex: 1; min-width: 200px; }
+.control-group.flex-2 { flex: 2; min-width: 300px; }
+.control-group label { font-size: 0.85rem; margin-bottom: 0.3rem; color: #4a5568; }
+.control-group select, .search-row input { padding: 0.65rem 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.95rem; background: #fff; }
+.search-row input { width: 100%; }
+
+/* Selected Course Info Card */
+.course-info-card { background: #ebf8ff; border: 1px solid #bee3f8; border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem; }
+.course-info-card h3 { color: var(--primary); font-size: 1.15rem; margin-bottom: 0.4rem; }
+.course-info-card p { font-size: 0.92rem; color: #2d3748; margin-top: 0.25rem; }
+.badge { display: inline-block; background: var(--secondary); color: #fff; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.78rem; font-weight: bold; }
 
 /* Papers Grid */
-.papers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+.papers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.5rem; }
 .paper-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 .paper-card h3 { font-size: 1.05rem; color: var(--primary); margin-bottom: 0.5rem; }
-.paper-meta { font-size: 0.85rem; color: #718096; margin-bottom: 0.4rem; }
+.paper-meta { font-size: 0.85rem; color: #4a5568; margin-bottom: 0.35rem; }
 .tags { margin: 0.75rem 0; }
 .tag { display: inline-block; background: #edf2f7; color: #4a5568; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin-right: 0.3rem; margin-top: 0.2rem; }
 
@@ -64,7 +73,7 @@ header { background: var(--primary); color: #fff; padding: 2rem 1rem; }
 
 /* Footer */
 footer { background: #2d3748; color: #fff; padding: 2rem 1rem; text-align: center; margin-top: 3rem; }
-.footer-disclaimer { max-width: 800px; margin: 0 auto 1.5rem auto; color: #cbd5e0; line-height: 1.4; }
+.footer-disclaimer { max-width: 800px; margin: 0 auto 1.2rem auto; color: #cbd5e0; }
 .social-links { margin-bottom: 0.75rem; }
 .social-label { font-weight: 600; margin-right: 0.5rem; display: inline-block; }
 .social-links a { color: #edf2f7; margin: 0 0.5rem; text-decoration: underline; }
